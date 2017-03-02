@@ -16,7 +16,7 @@ public:
 	int life;
 	void attack(Zombie &);
 	bool isAlive() {
-		return Player::life > 0;
+		return life > 0;
 	}
 	Player() : weapon{Weapon(rand() % int (Weapon::MAX))}, precision{((rand()%10)/10.0f)}, life{ 100 } {
 	};
@@ -37,8 +37,10 @@ public:
 		}
 	};
 	bool isAlive() {
-		return Zombie::life > 0;
+		return life > 0;
 	}
+ 	Zombie() : distance_player{rand () % 185}, damage{ ((rand() % 10)) }, life{ 100 } {
+	};
 };
 
 void Player::attack(Zombie &z) {
@@ -48,20 +50,20 @@ void Player::attack(Zombie &z) {
 void main() {
 	srand(time(nullptr));
 	Player player;
-	int const numerodezombies = 10;
+	const int numerodezombies = 10;
 	Zombie arrayzombies[numerodezombies];
 	bool ZombiesAreAlive;
 
 	do{
 		ZombiesAreAlive = false;
 		std::cout << "Player\n" << " your life :" << player.life << " your aim :" << player.precision;
-		for (int i = 0; i<numerodezombies; i++){
+		for (int i = 0; i < numerodezombies; i++){
 			if (arrayzombies[i].isAlive()){
 				player.attack(arrayzombies[i]);
 				std::cout << "Zombie\n" << " zombie life" << arrayzombies[i].life << " zombie damage" << arrayzombies[i].damage << " zombie speed" << arrayzombies[i].speed << " zombie distance" << arrayzombies[i].distance_player;
 				 if (arrayzombies[i].isAlive()) {
-					arrayzombies[i].Attack(player);
-					ZombiesAreAlive = true;
+					  arrayzombies[i].Attack(player);
+					  ZombiesAreAlive = true;
 				}
 			}
 		}
