@@ -2,14 +2,24 @@
 
 
 
-DynArray::DynArray(void):m_capacity(DYN_ARRAY_DEFAULT_SIZE), m_size(0), m_data(){ 
-
+DynArray::DynArray(void):
+	m_capacity(DYN_ARRAY_DEFAULT_SIZE), 
+	m_size(0), 
+	m_data(new int[m_capacity]){ 
 };
 
-DynArray::DynArray(size_t size):m_size(size), m_capacity(size), m_data(nullptr){
-
+DynArray::DynArray(size_t size, const int& value) :
+	m_size(size), 
+	m_capacity(size), 
+	m_data(new int [size])	
+{
+	fill(begin(), end(), value);
 };
-DynArray::DynArray(size_t size, const int &value):m_size(size), m_capacity(size), m_data(nullptr) {
+
+DynArray::DynArray(int* arr, int size) :
+	m_size(size), 
+	m_capacity(size), 
+	m_data(new int [size]) {
 
 };
 
@@ -28,11 +38,11 @@ DynArray& DynArray::operator=(const DynArray &x) {
 };
 
 int *DynArray::begin(void) const {
-
+	return &m_data[0];
 };
 
 int *DynArray::end(void) const {
-	
+	return &m_data[m_capacity];
 };
 
 void DynArray::resize(size_t n) {
@@ -60,9 +70,26 @@ size_t DynArray::size(void) const {
 	return m_size;
 };
 
-static size_t DynArray::maxSize(void) {
+static void copy(int *first, int *last, int *dest) {
 
 };
+
+void DynArray::push(const int &val) {
+	if (m_capacity <= m_size){
+	}
+	else {
+		int *temp;
+		temp = new int[m_capacity++];
+		m_size++;
+		for (int i =0; i > m_size; i++){
+			temp[i] = m_data[i];
+		}
+		delete[] m_data;
+		m_data = temp;
+	}
+	m_data[m_size-1] = val;
+};
+
 
 
 
