@@ -34,7 +34,25 @@ std::vector<int> ShiftRight(std::vector<int> v1) {
 	v1.insert(v1.begin(), 2);
 	for (int i = 0; i != v1.size(); i++){
 		aux = v1[i];
-	
+		std::cout << v1[i] << std::endl;
+	}
+	return v1;
+}
+/*std::vector<int>Rotateleft(std::vector<int> v1) {
+	for (int i = 0; i != v1.size(); i++){
+		std::cout << v1.rend[i] << std::endl;
+	}
+	return v1;
+}*/
+
+std::vector<int>SearchAdjacent(std::vector<int> v1) {
+	int aux;
+	for (int i = 0; i != v1.size(); i++){
+		if (v1[i] == v1[i+1] && v1[i+1] == v1[i+2]){
+			v1[i] = 3;
+			v1[i + 1] = 4;
+			v1[i + 2] = 5;
+		}
 		std::cout << v1[i] << std::endl;
 	}
 	return v1;
@@ -42,5 +60,5 @@ std::vector<int> ShiftRight(std::vector<int> v1) {
 
 void main() {
 	std::vector<int> v1({5, 10, 20, 40});
-	ShiftRight(v1);
+	SearchAdjacent(v1);
 }
